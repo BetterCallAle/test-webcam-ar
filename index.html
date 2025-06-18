@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Test Occhiali 3D</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+    video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: 0;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      pointer-events: auto; /* 👈 ABILITA INTERAZIONI sul canvas */
+    }
+    #controls {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 2; /* 👈 DEVE STARE SOPRA video e canvas */
+      background: rgba(255, 255, 255, 0.7);
+      padding: 10px;
+      border-radius: 8px;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <video id="video" autoplay playsinline></video>
+
+  <div id="controls">
+        <button id="resetBtn">Reset occhiali</button>
+        <label>
+            Scala:
+            <input type="range" id="scaleSlider" min="0.5" max="1.5" step="0.01" value="0.85">
+        </label>
+        <br>
+        <label>
+            Rotazione Z:
+            <input type="range" id="rotationSlider" min="-1" max="1" step="0.01" value="0">
+        </label>
+        <br>
+        <label>
+            Rotazione Y:
+            <input type="range" id="rotationYSlider" min="-1" max="1" step="0.01" value="0">
+        </label>
+        <br>
+        <button id="screenshotBtn">Fai Screenshot</button>
+    </div>
+
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.150.1/build/three.module.js"
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script type="module" src="./script.js"></script>
+</body>
+</html>
